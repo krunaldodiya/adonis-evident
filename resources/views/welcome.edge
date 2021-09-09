@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h1>Adonis and Pusher</h1>
+          <ul id="messages" class="list-group">
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+      <!-- Include the Pusher Client library -->
+      <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+      <script>
+              //Open a connection to Pusher
+              let pusher = new Pusher('186b7f15608a78a1bb79', {
+                cluster: 'ap2',
+                useTLS: true,
+              });
+
+              //Subscribe to the channel we specified in our Adonis Application
+              let channel = pusher.subscribe('adonis-channel')
+
+              //Listen for events on the channel
+              channel.bind('todo.created', (data) => {
+                let todoItem = $("<li class='list-group-item'>" + data.todo.todo + "</li>")
+                $('#messages').prepend(todoItem)
+              })
+      </script>
+  </body>
+</html>
