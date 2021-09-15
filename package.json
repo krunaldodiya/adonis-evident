@@ -7,7 +7,9 @@
     "build": "node ace build --production",
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "docker:build": "docker build -t kunaldodiya/adonisjs-evident .",
+    "docker:push": "docker push kunaldodiya/adonisjs-evident"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.0.0",
@@ -33,8 +35,5 @@
     "pusher": "^5.0.0",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19"
-  },
-  "engines": {
-    "node": "15.x"
   }
 }
